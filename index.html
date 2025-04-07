@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Islam Hasibul | Assignment Portal</title>
+  <style>
+    :root {
+      --navy: #0f172a;
+      --slate: #1e293b;
+      --light: #e2e8f0;
+      --blue: #3b82f6;
+      --cyan: #06b6d4;
+      --purple: #8b5cf6;
+      --yellow: #facc15;
+      --green: #22c55e;
+      --orange: #f97316;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--navy);
+      color: var(--light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background-color: var(--slate);
+      padding: 40px 45px;
+      border-radius: 18px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+      max-width: 650px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: var(--purple);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .info {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .info p {
+      font-size: 15px;
+      margin: 6px 0;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 14px;
+      color: var(--blue);
+      border-bottom: 2px solid var(--cyan);
+      padding-bottom: 5px;
+    }
+
+    .resource-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #334155;
+      padding: 14px 16px;
+      border-left: 5px solid var(--purple);
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .resource-bar span {
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .resource-bar a {
+      background-color: var(--blue);
+      color: white;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background 0.3s;
+      font-size: 14px;
+    }
+
+    .resource-bar a:hover {
+      background-color: var(--cyan);
+    }
+
+    .assignment-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .assignment-list li {
+      background-color: #334155;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border-left: 5px solid var(--purple);
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .assignment-list li span {
+      font-weight: 500;
+    }
+
+    .status {
+      font-size: 14px;
+    }
+
+    .submitted {
+      color: var(--green);
+    }
+
+    .pending {
+      color: var(--orange);
+    }
+
+    .upcoming {
+      color: var(--yellow);
+    }
+
+    .view-btn {
+      background-color: var(--blue);
+      color: white;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      transition: background 0.3s;
+      margin-left: 10px;
+    }
+
+    .view-btn:hover {
+      background-color: var(--cyan);
+    }
+
+    footer {
+      margin-top: 45px;
+      font-size: 13px;
+      color: #94a3b8;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>📘 Assignment Portal</h1>
+    <div class="info">
+      <p><strong>Name:</strong> Islam Hasibul</p>
+      <p><strong>Student ID:</strong> 2417839</p>
+      <p><strong>Subject:</strong> Information Management of Life</p>
+    </div>
+
+    <!-- Assignment Resource Section -->
+    <div class="section-title">Assignment Resource</div>
+    <div class="resource-bar">
+      <span>All assignment files & materials</span>
+      <a href="https://docs.google.com/document/d/1iW7KXzkYMO5BSvOL3Y6U5qpwOoPUYwCSK5c9idnPZE4/edit?usp=sharing" target="_blank">View</a>
+    </div>
+
+    <!-- Assignment Status Section -->
+    <div>
+      <div class="section-title">Assignments</div>
+      <ul class="assignment-list">
+        <li>
+          <span>Week 1: Portfolio Website Creation</span>
+          <div>
+            <span class="status submitted">✅ Submitted</span>
+            <a href="https://haasibul.github.io/teams99/" class="view-btn" target="_blank">View</a>
+          </div>
+        </li>
+        <li>
+          <span>Week 2: Identity Check Scammer!</span>
+          <div>
+            <span class="status submitted">✅ Submitted</span>
+            <a href="https://drive.google.com/drive/folders/1n_GmhStdQYHUiR0XCwB5qTC2HIt3Gmix?usp=sharing" class="view-btn" target="_blank">View</a>
+          </div>
+        </li>
+        <li>
+          <span>Week 3: Windows Command Line Dungeon Crawl</span>
+          <span class="status pending">🕓 Pending</span>
+        </li>
+        <li>
+          <span>Week 4: Virtual Library & Idea Sourcing</span>
+          <div>
+            <span class="status submitted">✅ Submitted</span>
+            <a href="https://drive.google.com/drive/folders/1npMDVq2P1HIka33mVmE8PD-U8B-k5TE2?usp=sharing" class="view-btn" target="_blank">View</a>
+          </div>
+        </li>
+        <li>
+          <span>Week 5: Catchup</span>
+          <span class="status upcoming">⏳ Upcoming</span>
+        </li>
+        <li>
+          <span>Week 6: Something Cool</span>
+          <span class="status upcoming">⏳ Upcoming</span>
+        </li>
+        <li>
+          <span>Week 7: Fake Virus & Windows Registry</span>
+          <span class="status upcoming">⏳ Upcoming</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>&copy; 2025 Islam Hasibul | All rights reserved</footer>
+
+</body>
+</html>
