@@ -6,15 +6,15 @@
   <title>Islam Hasibul | Assignment Portal</title>
   <style>
     :root {
-      --navy: #0f172a;
-      --slate: #1e293b;
-      --light: #e2e8f0;
-      --blue: #3b82f6;
-      --cyan: #06b6d4;
-      --purple: #8b5cf6;
-      --yellow: #facc15;
-      --green: #22c55e;
-      --orange: #f97316;
+      --bg1: #0f0c29;
+      --bg2: #302b63;
+      --bg3: #24243e;
+      --glass: rgba(255, 255, 255, 0.06);
+      --border-glow: rgba(0, 255, 204, 0.4);
+      --primary: #00fff0;
+      --accent: #ff6ec7;
+      --text: #e3f2fd;
+      --hover: rgba(0, 255, 204, 0.1);
     }
 
     * {
@@ -25,156 +25,177 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--navy);
-      color: var(--light);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      background-size: 600% 600%;
+      animation: gradientShift 25s ease infinite;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .sidebar {
+      width: 280px;
+      padding: 40px 20px;
+      background: linear-gradient(160deg, #1a1a2e 10%, #1f1f3b 90%);
+      border-right: 2px solid var(--border-glow);
+      box-shadow: 4px 0 15px rgba(0,255,204,0.05);
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
     }
 
-    .card {
-      background-color: var(--slate);
-      padding: 40px 45px;
-      border-radius: 18px;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
-      max-width: 650px;
-      width: 100%;
-    }
-
-    h1 {
-      font-size: 28px;
-      color: var(--purple);
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .info {
-      text-align: center;
+    .sidebar h1 {
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--accent);
+      font-size: 22px;
       margin-bottom: 30px;
     }
 
     .info p {
-      font-size: 15px;
-      margin: 6px 0;
+      margin: 8px 0;
+      font-size: 14px;
+      color: #cdd6f4;
+      text-align: center;
+    }
+
+    .main {
+      flex: 1;
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      backdrop-filter: blur(2px);
+    }
+
+    .section {
+      background: var(--glass);
+      border: 1px solid var(--border-glow);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.08);
+      backdrop-filter: blur(12px);
     }
 
     .section-title {
-      font-size: 20px;
-      margin-bottom: 14px;
-      color: var(--blue);
-      border-bottom: 2px solid var(--cyan);
-      padding-bottom: 5px;
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+      text-shadow: 0 0 10px var(--accent);
     }
 
     .resource-bar {
+      background: linear-gradient(to right, #1d1d35, #26264d);
+      padding: 18px 24px;
+      border-left: 5px solid var(--accent);
+      border-radius: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #334155;
-      padding: 14px 16px;
-      border-left: 5px solid var(--purple);
-      border-radius: 8px;
-      margin-bottom: 30px;
-    }
-
-    .resource-bar span {
-      font-weight: 500;
-      font-size: 16px;
+      box-shadow: 0 0 15px rgba(255, 110, 199, 0.3);
     }
 
     .resource-bar a {
-      background-color: var(--blue);
+      background: linear-gradient(to right, var(--primary), var(--accent));
       color: white;
       text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      transition: background 0.3s;
-      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 500;
+      transition: 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
     }
 
     .resource-bar a:hover {
-      background-color: var(--cyan);
+      transform: scale(1.1);
+      background: var(--accent);
     }
 
     .assignment-list {
       list-style: none;
-      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
     .assignment-list li {
-      background-color: #334155;
-      padding: 14px 16px;
-      margin-bottom: 12px;
-      border-left: 5px solid var(--purple);
-      border-radius: 8px;
+      background: linear-gradient(135deg, #1e1e3f, #28284f);
+      padding: 20px;
+      border-left: 5px solid var(--accent);
+      border-radius: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: 0.3s ease;
+      box-shadow: 0 0 18px rgba(255, 110, 199, 0.2);
     }
 
-    .assignment-list li span {
-      font-weight: 500;
+    .assignment-list li:hover {
+      transform: scale(1.015);
+      background: var(--hover);
     }
 
     .status {
       font-size: 14px;
+      margin-right: 12px;
     }
 
-    .submitted {
-      color: var(--green);
-    }
-
-    .pending {
-      color: var(--orange);
-    }
-
-    .upcoming {
-      color: var(--yellow);
-    }
+    .submitted { color: #00ffc3; text-shadow: 0 0 8px #00ffc3; }
+    .pending   { color: #ffc400; text-shadow: 0 0 8px #ffc400; }
+    .upcoming  { color: #ff6ec7; text-shadow: 0 0 8px #ff6ec7; }
 
     .view-btn {
-      background-color: var(--blue);
+      background: linear-gradient(to right, var(--primary), var(--accent));
       color: white;
-      text-decoration: none;
-      padding: 6px 12px;
-      border-radius: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
       font-size: 13px;
-      transition: background 0.3s;
-      margin-left: 10px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
     }
 
     .view-btn:hover {
-      background-color: var(--cyan);
+      transform: scale(1.1);
+      background: var(--primary);
     }
 
     footer {
-      margin-top: 45px;
-      font-size: 13px;
-      color: #94a3b8;
       text-align: center;
+      font-size: 13px;
+      color: #aebbcf;
+      padding: 30px;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
+  <aside class="sidebar">
     <h1>📘 Assignment Portal</h1>
     <div class="info">
       <p><strong>Name:</strong> Islam Hasibul</p>
       <p><strong>Student ID:</strong> 2417839</p>
       <p><strong>Subject:</strong> Information Management of Life</p>
     </div>
+  </aside>
 
-    <!-- Assignment Resource Section -->
-    <div class="section-title">Assignment Resource</div>
-    <div class="resource-bar">
-      <span>All assignment files & materials</span>
-      <a href="https://docs.google.com/document/d/1iW7KXzkYMO5BSvOL3Y6U5qpwOoPUYwCSK5c9idnPZE4/edit?usp=sharing" target="_blank">View</a>
-    </div>
+  <main class="main">
+    <section class="section">
+      <div class="section-title">Assignment Resource</div>
+      <div class="resource-bar">
+        <span>All assignment files & materials</span>
+        <a href="https://docs.google.com/document/d/1iW7KXzkYMO5BSvOL3Y6U5qpwOoPUYwCSK5c9idnPZE4/edit?usp=sharing" target="_blank">View</a>
+      </div>
+    </section>
 
-    <!-- Assignment Status Section -->
-    <div>
+    <section class="section">
       <div class="section-title">Assignments</div>
       <ul class="assignment-list">
         <li>
@@ -193,7 +214,10 @@
         </li>
         <li>
           <span>Week 3: Windows Command Line Dungeon Crawl</span>
-          <span class="status pending">🕓 Pending</span>
+             <div>
+          <span class="status submitted">✅ Submitted</span>
+             <a href="https://drive.google.com/drive/folders/1j9xgTxsIJXWqSayAzSvp5tlx3aW2q757?usp=sharing" class="view-btn" target="_blank">View</a>
+          </div>
         </li>
         <li>
           <span>Week 4: Virtual Library & Idea Sourcing</span>
@@ -204,21 +228,21 @@
         </li>
         <li>
           <span>Week 5: Catchup</span>
-          <span class="status upcoming">⏳ Upcoming</span>
+          <span class="status pending">🕓 Pending</span>
         </li>
         <li>
           <span>Week 6: Something Cool</span>
-          <span class="status upcoming">⏳ Upcoming</span>
+          <span class="status pending">🕓 Pending</span>
         </li>
         <li>
           <span>Week 7: Fake Virus & Windows Registry</span>
           <span class="status upcoming">⏳ Upcoming</span>
         </li>
       </ul>
-    </div>
-  </div>
+    </section>
 
-  <footer>&copy; 2025 Islam Hasibul | All rights reserved</footer>
+    <footer>&copy; 2025 Islam Hasibul | All rights reserved</footer>
+  </main>
 
 </body>
 </html>
