@@ -275,43 +275,7 @@
 
   <!-- Grade Fetching Script -->
   <script>
-    fetch("function doGet() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
-  const data = sheet.getDataRange().getValues();
-
-  let totalReceived = 0;
-  let totalPossible = 0;
-  let rows = '';
-
-  for (let i = 1; i < data.length; i++) {
-    const gradeName = data[i][1];
-    const gradeType = data[i][2];
-    const received = Number(data[i][3]);
-    const max = Number(data[i][4]);
-
-    totalReceived += received;
-    totalPossible += max;
-
-    rows += `<tr>
-      <td>${gradeName}</td>
-      <td>${gradeType}</td>
-      <td>${received}</td>
-      <td>${max}</td>
-    </tr>`;
-  }
-
-  const percentage = totalPossible > 0 ? ((totalReceived / totalPossible) * 100).toFixed(2) : 'N/A';
-
-  const html = HtmlService.createHtmlOutputFromFile('index')
-    .getContent()
-    .replace('{{ROWS}}', rows)
-    .replace('{{PERCENTAGE}}', percentage);
-
-  return HtmlService.createHtmlOutput(html)
-    .setTitle('Grade Dashboard')
-    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
-}
-")
+    fetch("https://script.google.com/macros/s/AKfycbz0FEh1VKFZy-OcPMeL144ahsUoBzEjJcZXmmk00sj3yPDMtXTJcK6tlmcODWu-E53P6Q/exec")
       .then(res => res.text())
       .then(data => {
         document.getElementById("grade-output").innerHTML = data;
@@ -324,5 +288,3 @@
 
 </body>
 </html>
-
-
