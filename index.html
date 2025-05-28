@@ -280,17 +280,26 @@
 <footer>&copy; 2025 Islam Hasibul | All rights reserved</footer>
 
 <!-- Grade Fetching Script -->
-<script>
-  fetch("https://script.google.com/macros/s/AKfycbz3PXtgpZGYA0H-pdh0vWc2BXxafiBmcCx20QBK8toQVT3hi5FZhq4l3yjpxtAuD2wokw/exec")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("grade-output").textContent = data;
-    })
-    .catch(err => {
-      document.getElementById("grade-output").textContent = "Failed to load grade data.";
-      console.error(err);
-    });
-</script>
+ <script>
+    fetch("https://script.google.com/macros/s/AKfycbz3PXtgpZGYA0H-pdh0vWc2BXxafiBmcCx20QBK8toQVT3hi5FZhq4l3yjpxtAuD2wokw/exec")
+      .then(res => res.json())
+      .then(data => {
+        const output = document.getElementById("grade-output");
+        output.innerHTML = "";
+        data.forEach(item => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <span><strong>${item.grade_name?.trim() || 'Unknown Week'}</strong> (${item.grade_type})</span>
+            <span>🔢 ${item.gread_received} / ${item.max_grade}</span>
+          `;
+          output.appendChild(li);
+        });
+      })
+      .catch(err => {
+        document.getElementById("grade-output").innerHTML = "<li>❌ Failed to load grades.</li>";
+        console.error(err);
+      });
+  </script>
 
 </body>
 </html>
