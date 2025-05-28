@@ -262,29 +262,28 @@
       </ul>
     </section>
 
-    <!-- 📊 Grade Overview Section -->
-    <section class="section">
-      <div class="section-title">📊 Grade Overview</div>
-      <div id="grade-output" style="font-size: 18px; color: var(--primary);">
-        Loading grades...
-      </div>
-    </section>
+   <!-- 📊 Grade Overview Section -->
+<section class="section">
+  <div class="section-title">📋 Grade Overview</div>
+  <div id="grade-output" style="font-size: 18px; color: var(--primary);">
+    Loading grades...
+  </div>
+</section>
 
-    <footer>&copy; 2025 Islam Hasibul | All rights reserved</footer>
-  </main>
+<footer>&copy; 2025 Islam Hasibul | All rights reserved</footer>
 
-  <!-- Grade Fetching Script -->
-  <script>
-    fetch("https://script.google.com/macros/s/AKfycbz0FEh1VKFZy-OcPMeL144ahsUoBzEjJcZXmmk00sj3yPDMtXTJcK6tlmcODWu-E53P6Q/exec")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("grade-output").innerHTML = data;
-      })
-      .catch(err => {
-        document.getElementById("grade-output").innerHTML = "Failed to load grade data.";
-        console.error(err);
-      });
-  </script>
+<!-- Grade Fetching Script -->
+<script>
+  fetch("https://script.google.com/macros/s/AKfycbz0FEh1VKFZy-0cPMel144ahsUoBzEjjcZxmk00sJ3jyPDMtXTJcK6t1mcODwu-E53P6O/exec")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("grade-output").textContent = data;
+    })
+    .catch(err => {
+      document.getElementById("grade-output").textContent = "Failed to load grade data.";
+      console.error(err);
+    });
+</script>
 
 </body>
 </html>
