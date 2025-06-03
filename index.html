@@ -299,47 +299,46 @@
 
   let gradeData = [];
 
-  fetch("https://script.google.com/macros/s/AKfycbxgSWV5rLb1V_TRRU6fOKKqdUYb7iA1NoCarly66TNTfYdZIOJdmz5yVBy-dkktfwWNzw/exec")
-    .then(res => res.json())
-    .then(data => {
-      gradeData = data;
-      const output = document.getElementById("grade-output");
-      let totalReceived = 0;
-      let totalMax = 0;
+fetch("https://script.google.com/macros/s/AKfycbxgSWv5rLb1V_TRRU6f0KKqdUYb7IA1NoCarly66TNfTYdZlOjDmz5yWBy-dkktF/exec")
+.then(res => res.json())
+.then(data => {
+let totalReceived = 0;
+let totalMax = 0;
+const output = document.getElementById("grade-output");
+const list = document.createElement("ul");
 
-      const list = document.createElement("ul");
-      list.style.listStyle = "none";
-      list.style.padding = "0";
+data.forEach(item => {
+const received = item.gread_received;
+const max = item.max_grade;
 
-      data.forEach(item => {
-        const received = parseFloat(item.gread_received) || 0;
-        const max = parseFloat(item.max_grade) || 0;
-        totalReceived += received;
-        totalMax += max;
+if (typeof received === 'number' && typeof max === 'number') {
+totalReceived += received;
+totalMax += max;
+}
 
-        const li = document.createElement("li");
-        li.style.marginBottom = "8px";
-        li.innerHTML = `
-          <strong>${item.grade_name?.trim() || 'Unknown Week'}</strong> (${item.grade_type})<br/>
-          🔢 ${received} / ${max}
-        `;
-        list.appendChild(li);
-      });
+const li = document.createElement("li");
+li.style.marginBottom = "8px";
+li.innerHTML = `
+<strong>${item.grade_name || 'Unknown Week'}</strong> (${item.grade_type})<br/>
+✅ ${received} / ${max}
+`;
+list.appendChild(li);
+});
 
-      const percentage = totalMax > 0 ? ((totalReceived / totalMax) * 100).toFixed(2) : "N/A";
-      output.innerHTML = `
-        <p style="margin-bottom: 16px;">✅ Your total grade percentage is: <strong style="color: var(--accent); font-size: 20px;">${percentage}%</strong></p>
-      `;
-      output.appendChild(list);
+const percentage = totalMax > 0 ? ((totalReceived / totalMax) * 100).toFixed(2) : "N/A";
+output.innerHTML = `
+<p style="margin-bottom: 16px;">✅ Your total grade percentage is:
+<strong style="color: var(--accent); font-size: 20px;">${percentage}%</strong></p>
+`;
+output.appendChild(list);
 
-      // Fill the progress bar
-      const bar = document.getElementById("bar-fill");
-      bar.style.width = percentage + "%";
-    })
-    .catch(err => {
-      document.getElementById("grade-output").innerHTML = "<p>❌ Failed to load grades.</p>";
-      console.error(err);
-    });
+const bar = document.getElementById("bar-fill");
+bar.style.width = percentage + "%";
+})
+.catch(err => {
+document.getElementById("grade-output").innerHTML = "<p>❌ Failed to load grades.</p>";
+console.error(err);
+});
 </script>
 
 </body>
