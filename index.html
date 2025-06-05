@@ -299,47 +299,52 @@
 
   let gradeData = [];
 
+<script>
 fetch("https://script.google.com/macros/s/AKfycbyJi6IQaREJWkWQLHfOyfMxf1Xy2rdYOeWO6VJ29zwYjrwL8UUiwYgUmPoQigLY-vOp9w/exec")
-.then(res => res.json())
-.then(data => {
-let totalReceived = 0;
-let totalMax = 0;
-const output = document.getElementById("grade-output");
-const list = document.createElement("ul");
+  .then(res => res.json())
+  .then(data => {
+    let totalReceived = 0;
+    let totalMax = 0;
+    const output = document.getElementById("grade-output");
+    const list = document.createElement("ul");
 
-data.forEach(item => {
-const received = item.gread_received;
-const max = item.max_grade;
+    data.forEach(item => {
+      const received = item.gread_received;
+      const max = item.max_grade;
 
-if (typeof received === 'number' && typeof max === 'number') {
-totalReceived += received;
-totalMax += max;
-}
+      if (typeof received === 'number' && typeof max === 'number') {
+        totalReceived += received;
+        totalMax += max;
+      }
 
-const li = document.createElement("li");
-li.style.marginBottom = "8px";
-li.innerHTML = `
-<strong>${item.grade_name || 'Unknown Week'}</strong> (${item.grade_type})<br/>
-✅ ${received} / ${max}
-`;
-list.appendChild(li);
-});
+      const li = document.createElement("li");
+      li.style.marginBottom = "8px";
+      li.innerHTML = `
+        <strong>${item.grade_name || 'Unknown Week'}</strong> (${item.grade_type})<br/>
+        ✅ ${received} / ${max}
+      `;
+      list.appendChild(li);
+    });
 
-const percentage = totalMax > 0 ? ((totalReceived / totalMax) * 100).toFixed(2) : "N/A";
-output.innerHTML = `
-<p style="margin-bottom: 16px;">✅ Your total grade percentage is:
-<strong style="color: var(--accent); font-size: 20px;">${percentage}%</strong></p>
-`;
-output.appendChild(list);
+    const percentage = totalMax > 0 ? ((totalReceived / totalMax) * 100).toFixed(2) : "N/A";
+    output.innerHTML = `
+      <p style="margin-bottom: 16px;">✅ Your total grade percentage is:
+        <strong style="color: var(--accent); font-size: 20px;">${percentage}%</strong>
+      </p>
+    `;
+    output.appendChild(list);
 
-const bar = document.getElementById("bar-fill");
-bar.style.width = percentage + "%";
-})
-.catch(err => {
-document.getElementById("grade-output").innerHTML = "<p>❌ Failed to load grades.</p>";
-console.error(err);
-});
+    const bar = document.getElementById("bar-fill");
+    if (bar && percentage !== "N/A") {
+      bar.style.width = percentage + "%";
+    }
+  })
+  .catch(err => {
+    document.getElementById("grade-output").innerHTML = "<p>❌ Failed to load grades.</p>";
+    console.error(err);
+  });
 </script>
+
 
 </body>
 </html>
