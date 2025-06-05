@@ -278,72 +278,36 @@
   <div id="grade-bar" style="margin-top: 20px; height: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
     <div id="bar-fill" style="height: 100%; width: 0%; background: linear-gradient(90deg, #00ffc3, #ff6ec7); transition: width 1s ease;"></div>
   </div>
-  <button onclick="downloadCSV()" style="margin-top: 20px; padding: 8px 14px; border-radius: 8px; background: var(--primary); color: #000; border: none; cursor: pointer; font-weight: 600;">⬇️ Download Grades</button>
 </section>
 
 <!-- 📊 Grade Fetching Script -->
 <script>
-  function downloadCSV() {
-    const rows = [["Grade Name", "Type", "Received", "Max"]];
-    gradeData.forEach(item => {
-      rows.push([item.grade_name, item.grade_type, item.gread_received, item.max_grade]);
-    });
-    const csv = rows.map(row => row.join(",")).join("\n");
-    const blob = new Blob([csv], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "grades.csv";
-    a.click();
-  }
+  fetch("https://script.google.com/macros/s/AKfycbzfAyJTtKhVHHo8OasQcOmo0GbMHOMpx6YraA9jaCSYU0CGJbGpPyOZrACNUk6Jdd9IHA/exec")
+    .then(res => res.json())
+    .then(data => {
+      const output = document.getElementById("grade-output");
+      const percentage = data.grade_percentage || "N/A";
 
-  let gradeData = [];
-
-<script>
-fetch("https://script.google.com/macros/s/AKfycbyJi6IQaREJWkWQLHfOyfMxf1Xy2rdYOeWO6VJ29zwYjrwL8UUiwYgUmPoQigLY-vOp9w/exec")
-  .then(res => res.json())
-  .then(data => {
-    let totalReceived = 0;
-    let totalMax = 0;
-    const output = document.getElementById("grade-output");
-    const list = document.createElement("ul");
-
-    data.forEach(item => {
-      const received = item.gread_received;
-      const max = item.max_grade;
-
-      if (typeof received === 'number' && typeof max === 'number') {
-        totalReceived += received;
-        totalMax += max;
-      }
-
-      const li = document.createElement("li");
-      li.style.marginBottom = "8px";
-      li.innerHTML = `
-        <strong>${item.grade_name || 'Unknown Week'}</strong> (${item.grade_type})<br/>
-        ✅ ${received} / ${max}
+      output.innerHTML = `
+        <p style="margin-bottom: 16px;">✅ Grade Received:
+          <strong>${data.grade_received}</strong> / <strong>${data.max_grade}</strong>
+        </p>
+        <p style="margin-bottom: 16px;">📊 Your total grade percentage is:
+          <strong style="color: var(--accent); font-size: 20px;">${percentage}</strong>
+        </p>
       `;
-      list.appendChild(li);
+
+      const bar = document.getElementById("bar-fill");
+      if (bar && percentage !== "N/A") {
+        bar.style.width = percentage;
+      }
+    })
+    .catch(err => {
+      document.getElementById("grade-output").innerHTML = "<p>❌ Failed to load grades.</p>";
+      console.error(err);
     });
-
-    const percentage = totalMax > 0 ? ((totalReceived / totalMax) * 100).toFixed(2) : "N/A";
-    output.innerHTML = `
-      <p style="margin-bottom: 16px;">✅ Your total grade percentage is:
-        <strong style="color: var(--accent); font-size: 20px;">${percentage}%</strong>
-      </p>
-    `;
-    output.appendChild(list);
-
-    const bar = document.getElementById("bar-fill");
-    if (bar && percentage !== "N/A") {
-      bar.style.width = percentage + "%";
-    }
-  })
-  .catch(err => {
-    document.getElementById("grade-output").innerHTML = "<p>❌ Failed to load grades.</p>";
-    console.error(err);
-  });
 </script>
+
 
 
 </body>
